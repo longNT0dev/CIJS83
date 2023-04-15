@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.form {
+    width: 500px;
+    margin: 15% auto;
+}
+
+button {
+    text-transform: uppercase;
+    background-color: #27c6ae;
+    border: none;
+    border-radius: 6px;
+
+}
+
+button:hover {
+    background-color: #1f9483;
+    transition: all 300ms ease;
+}
+
+input {
+    outline: none;
+    opacity: .6;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+}
+
+.header_nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header input {
+    width: 200px;
+    border-radius: 6px;
+    padding: 3px 5px;
+    border: 1px solid black;
+}
+
+.header button {
+    padding: 0 25px;
+}
+
+.line {
+    padding: 0 20px;
+    border-top: 1px solid black;
+    margin: 15px 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.content_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content_header input {
+    width: 360px;
+    border-radius: 6px;
+    padding: 3px 5px;
+    border: 1px solid black;
+}
+
+.content_text {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.text {
+    display: flex;
+    justify-content: space-between;
+    gap: 60%;
+    border-radius: 8px;
+    padding: 13px;
+    background-color: aliceblue;
+}
+
+.username {
+    text-transform: capitalize;
+}
