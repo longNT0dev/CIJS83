@@ -10,12 +10,11 @@
     margin: 15% auto;
 }
 
-button {
+.test-module {
     text-transform: uppercase;
     background-color: #27c6ae;
     border: none;
     border-radius: 6px;
-
 }
 
 button:hover {

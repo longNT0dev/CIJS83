@@ -1,5 +1,5 @@
 import React from 'react'
-import './SS2.css'
+import './SS2.module.css'
 
 function SS2() {
     const text = "Thêm"
@@ -14,6 +14,7 @@ function SS2() {
 
     return (
         <div className="form">
+            <button className="test-module">Hello</button>
             <div className="header">
                 <div className="header_nav">
                     <input type="text" placeholder="Tên" className="inputname" />
