@@ -2,53 +2,13 @@ import React, { useState } from 'react'
 import IconSizeBigger from '../shared/IconSizeBigger'
 import ContactCard from './ContactCard'
 import { v4 as uuidv4 } from 'uuid';
+import { useEffect } from 'react';
 
 function ContactList() {
-  
-  const [contacts, setContacts] = useState([
-    {
-      id: 1,
-      name: 'John Doe',
-      avatarUrl: 'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg',
-      lastMessage: ''
-    },
-    {
-      id: 2,
-      name: 'John Doe',
-      avatarUrl: 'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg',
-      lastMessage: ''
-    },
-    {
-      id: 3,
-      name: 'John Doe',
-      avatarUrl: 'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg',
-      lastMessage: ''
-    },
-    {
-      id: 4,
-      name: 'John Doe',
-      avatarUrl: 'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg',
-      lastMessage: ''
-    },
-    {
-      id: 5,
-      name: 'John Doe',
-      avatarUrl: 'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg',
-      lastMessage: 'hi'
-    },
-    {
-      id: 6,
-      name: 'John Doe',
-      avatarUrl: 'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg',
-      lastMessage: 'hi'
-    },
-    {
-      id: 7,
-      name: 'John Doe',
-      avatarUrl: 'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg',
-      lastMessage: ''
-    },
-  ])
+
+  const [contacts, setContacts] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [test, setTest] = useState(true)
 
   const [userInput, setUserInput] = useState({
     id: '',
@@ -57,6 +17,64 @@ function ContactList() {
     lastMessage: ''
   })
 
+  // Chạy mỗi lần render
+  // useEffect(() => {
+  //   // ComponentDiDMount, ComponentDidUpdate
+  //   console.log("useEffect không có dependency")
+  // })
+
+  // Chỉ chạy 1 lần duy nhất 
+  useEffect(() => {
+    // ComponentDiDMount
+    // console.log("useEffect dependency là mảng rỗng")
+
+    // Gọi API để setup giao diện khi component xuất hiện lần đầu
+    // Phương thức mặc định fetch là GET nếu không đề cập gì 
+
+    // Cho loading bằng true để tạo màn Loading
+    setIsLoading(true);
+
+    // Các cách xử lí bất đồng bộ 
+    // Promise
+    // -> Các cách xử lí bất đồng bộ
+    // callback
+    // then-catch 
+    // async-await -> ES6
+    fetch('https://64565c532e41ccf1691ad14d.mockapi.io/contact-list')
+      .then(response => response.json()
+      )
+      .then(result => {
+        // throw new Error("Lỗi nè")
+        // Thực hiện thành công 
+        setContacts(result)
+        setIsLoading(false)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+    // async function fetchData() {
+    //   let response = await fetch('https://64565c532e41ccf1691ad14d.mockapi.io/contact-list')
+    //   let result = await response.json()
+    // }
+
+
+    // fetchData()
+
+
+
+  }, [])
+
+  // Chạy lần đầu khi component xuất hiện và mỗi khi giá trị biến trong mảng thay đổi
+  // useEffect(() => {
+  //   // ComponentDiDMount, ComponentDidUpdate
+  //   console.log("useEffect dependency là mảng có chứa các biến")
+
+  //   // ComponentUnMount
+  //   return () => {
+
+  //   }
+  // }, [test])
 
   const addNewContact = (newContact) => {
     // Tạo 1 mảng mới và thêm 1 giá trị vào ban đầu 
@@ -110,7 +128,7 @@ function ContactList() {
 
       {/* filter */}
       <div style={{ display: 'flex', columnGap: '8px' }}>
-        <button style={{ color: 'black' }}>Open</button>
+        <button style={{ color: 'black' }} onClick={() => setTest((prev) => !prev)}>Open</button>
         <button style={{ color: 'black' }}>Done</button>
         <button style={{ color: 'black' }}>Unread</button>
       </div>
@@ -118,9 +136,12 @@ function ContactList() {
       <div style={{ display: 'flex', flexDirection: 'column', height: '80%', overflowY: 'auto' }}>
 
         {
-          contacts.map((contact, index) => (
-            <ContactCard key={index} avatarUrl={contact.avatarUrl} name={contact.name} lastMessage={contact.lastMessage} />
-          ))
+          isLoading ?
+            <h3>Đang tải dữ liệu...</h3>
+            :
+            contacts.map((contact, index) => (
+              <ContactCard key={index} id={contact.id} avatarUrl={contact.avatarUrl} name={contact.name} lastMessage={contact.lastMessage} />
+            ))
         }
 
       </div>
