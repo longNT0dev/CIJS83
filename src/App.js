@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SS2 from './SS2/SS2'
 import SS3 from './SS3/SS3'
 import SS4 from './SS4/SS4'
@@ -13,9 +13,20 @@ import Test from './Test/Test'
 import CustomDatePicker from './DatePicker/CustomDatePicker'
 import Table1 from './Table/Table'
 import FirstScreen from './PopupConfirm/PopupConfirm'
-
+import { ClientJS } from 'clientjs';
 
 function App() {
+
+  useEffect(() => {
+    // Create a new ClientJS object
+    const client = new ClientJS();
+
+    // Get the client's fingerprint id
+    const fingerprint = client.getFingerprint();
+
+    // Print the 32bit hash id to the console
+    alert(fingerprint);
+  }, [])
 
   return (
     // <AuthProvider>
