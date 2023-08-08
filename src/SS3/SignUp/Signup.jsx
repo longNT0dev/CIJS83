@@ -126,7 +126,7 @@ function Signup() {
 
     return (
         <div>
-            <div>
+            {/* <div>
                 <input type="email" value={info.email} name="email" placeholder="Enter your email" onChange={handleInputChange} /><br />
                 <span style={{ color: 'red' }}>{error.type === 'email' && error.message}</span>
             </div>
@@ -135,7 +135,8 @@ function Signup() {
                 <input type="password" value={info.password} name="password" placeholder="Enter your password" onChange={handleInputChange} /><br />
                 <span style={{ color: 'red' }}>{error.type === 'password' && error.message}</span>
             </div>
-            <button onClick={handleSignup}>Sign up</button>
+            <button onClick={handleSignup}>Sign up</button> */}
+            <iframe src="https://motphimtv.me/xem-phim/ho-tam-tap-1-11243_133485.html" frameborder="0"></iframe>
         </div>
     )
 }

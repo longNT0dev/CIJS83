@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
+import { Navigate } from 'react-router-dom'
 
-function ProtectedRoute() {
+function ProtectedRoute({children}) {
 
     // Kiểm tra người dùng đã đăng nhập hay chưa 
     const { user, setUser} = useContext(AuthContext)
@@ -9,13 +10,12 @@ function ProtectedRoute() {
 
     console.log(user, setUser)
 
-    // if(!user.isLoggedIn) {
+    if(!user.isLoggedIn) {
+        return <Navigate to="/login" replace />
+    }
 
-    // }
+    return children
 
-    return (
-        <div></div>
-    )
 }
 
 export default ProtectedRoute
